@@ -6,6 +6,12 @@
 
 A collection of hands-on exercises crafted by [me](https://github.com/JonyR3G0), from an intensive modern JavaScript module imparted by [Dev.f](https://devf.la/). The exercises cover fundamental areas of React:
 
+- `Functional components`
+- `Props`
+- `Hooks`
+- `JSX`
+
+
 ## 🏫 Lessons
 
 | Topic                                          | Date       |
@@ -23,4 +29,6 @@ A collection of hands-on exercises crafted by [me](https://github.com/JonyR3G0),
 
 ## ⚡ New good-practices adquired
 
-- `-null`
+- `Using linters for consistency, (ESLint, for JS)`
+
+
