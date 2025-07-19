@@ -1,12 +1,20 @@
-# React + Vite
+# ⚛️ Módulo 06: Introducción a React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🔨 Proyecto: Lista de Compras Interactiva 🛒
 
-Currently, two official plugins are available:
+> **Descripción:** Una aplicación web simple pero funcional para gestionar una lista de compras. Permite a los usuarios agregar nuevos productos a través de un campo de texto y eliminarlos de la lista con un solo clic. El proyecto se centra en la manipulación dinámica de la interfaz de usuario a través de la gestión del estado en React.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Conceptos clave:** `useState, Gestión de estado, Event Handlers (onClick, onChange), Renderizado de listas, Componentes funcionales, Props`
 
-## Expanding the ESLint configuration
+### 🛠️ Tecnologías Utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frameworks/Librerías:**
+    - `React 19.1.0`
+    - `React DOM 19.1.0`
+- **Entorno de Desarrollo:**
+    - `Vite 7.0.4`
+    - `Node.js`
+- **Herramientas de Calidad de Código:**
+    - `ESLint 9.30.1` con la configuración recomendada y plugins para React (`eslint-plugin-react-hooks`, `eslint-plugin-react-refresh`).
+
+**by J0n4s4n**
