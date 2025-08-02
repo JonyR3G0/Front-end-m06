@@ -1,5 +1,3 @@
-import React from "react";
-import TextPressure from "../blocks/TextAnimations/TextPressure/TextPressure";
 
 export const Header = () => {
   return (
