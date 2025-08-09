@@ -1,40 +1,46 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Checkbox, Form, Input } from 'antd'
+import { StatusContext } from '../context/StatusContext'
 
-const onFinish = values => {
-  console.log('Success:', values)
+export const RegistrandoPlaneta = () => {
+  const { status, setStatus } = useContext(StatusContext)
+  const onFinish = values => {
+  // Aqui iria la logica para agregar los planetas
+    setStatus(0)
+    console.log('Success:', values)
+  }
+  const onFinishFailed = errorInfo => {
+  // A causa del poco tiempo que tengo, no voy a hacer la implementacion
+    console.log('Failed:', errorInfo)
+  }
+  return (
+    <>
+      <div className='text-amber-50 bg-sky-800 h-full flex flex-col justify-center items-center'>
+        <Form
+          className='w-xl'
+          layout='vertical'
+          name='basic'
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          style={{ maxWidth: 600 }}
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete='off'
+        >
+          <h1 className='text-2xl text-sky-200 p-1'>Nombre del planeta</h1>
+          <Form.Item
+            name='Nombre del planeta'
+            rules={[{ required: true, message: '¡Por favor no lo dejes vacío!' }]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Button type='primary' htmlType='submit'>
+            Registrar
+          </Button>
+        </Form>
+      </div>
+    </>
+  )
 }
-const onFinishFailed = errorInfo => {
-  console.log('Failed:', errorInfo)
-}
-
-export const RegistrandoPlaneta = () => (
-  <div className='text-amber-50 bg-sky-800'>
-    <Form
-      name='basic'
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      style={{ maxWidth: 600 }}
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete='off'
-    >
-      <Form.Item
-        className='text-amber-50'
-        style={{ color: 'white' }}
-        label='Username'
-        name='username'
-        rules={[{ required: true, message: 'Please input your username!' }]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item label={null}>
-        <Button type='primary' htmlType='submit'>
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
-  </div>
-)

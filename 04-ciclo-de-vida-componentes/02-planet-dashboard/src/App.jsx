@@ -7,6 +7,7 @@ import { Despegar } from './components/Despegar'
 import { SinEnergia } from './components/SinEnergia'
 import { Detenido } from './components/Detenido'
 import { RegistrandoPlaneta } from './components/RegistrandoPlaneta'
+import { PlanetRandom } from './components/PlanetRandom'
 
 const { Sider, Content } = Layout
 
@@ -17,24 +18,20 @@ const styleSider = {
 export const App = () => {
   const { status, setStatus } = useContext(StatusContext)
 
-  const estadoNavegacion = [<Despegar />, <SinEnergia />, <Detenido />, <Explorando />, 'Registrando planeta']
+  const estadoNavegacion = [<Despegar />, <SinEnergia />, <Detenido />, <Explorando />, <RegistrandoPlaneta />]
 
-  const [collapsed, setCollapsed] = useState(false)
   return (
     <Layout style={styleSider} className='h-dvh w-dvw crt p-2'>
       <Sider
         width='30%'
         style={styleSider}
-        collapsible
-        collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
       >
-        <PanelDeControl collapsed={collapsed} />
+        <PanelDeControl />
       </Sider>
       <Layout>
+        <PlanetRandom />
         <Content className='bg-black '>
-          {/* {estadoNavegacion[status]} */}
-          <RegistrandoPlaneta />
+          {estadoNavegacion[status]}
         </Content>
       </Layout>
     </Layout>
