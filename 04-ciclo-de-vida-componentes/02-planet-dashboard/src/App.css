@@ -1,11 +1,37 @@
 @import "tailwindcss";
 
-* {
-  font-family: "Silkscreen", sans-serif;
+@theme {
+  --animate-colorPulsar: colorPulsar 3s ease-in-out infinite;
+  @keyframes colorPulsar {
+    0% {
+      transform: translateY(0);
+      color: #fb7185;
+    }
+    50% {
+      transform: translateY(-20px);
+      color: #0ea5e9;
+    }
+    100% {
+      transform: translateY(0);
+      color: #fb7185;
+    }
+  }
+  --animate-colorLazer: colorLazer 3s ease-in-out infinite;
+  @keyframes colorLazer {
+    0% {
+      color: #fb7185;
+    }
+    50% {
+      color: #fcd34d;
+    }
+    100% {
+      color: #fb7185;
+    }
+  }
 }
 
-.jap-font {
-  font-family: "DotGothic16", sans-serif;
+* {
+  font-family: "Silkscreen", sans-serif;
 }
 
 @keyframes flicker {
