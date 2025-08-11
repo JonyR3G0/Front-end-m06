@@ -1,9 +1,11 @@
 import React from 'react'
 import { Flex, Spin } from 'antd'
+import { PlanetRandom } from './PlanetRandom'
 
 export const Explorando = () => {
   return (
     <div className='w-full h-full bg-slate-800 flex-col flex-initial flex justify-center items-center'>
+      <PlanetRandom />
       <div className='flex items-center'>
         <h1 className='text-6xl pr-4 text-sky-400 text-clip'>Explorando</h1>
         <Flex align='center' gap='middle'>

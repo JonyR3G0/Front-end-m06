@@ -29,7 +29,6 @@ export const App = () => {
         <PanelDeControl />
       </Sider>
       <Layout>
-        <PlanetRandom />
         <Content className='bg-black '>
           {estadoNavegacion[status]}
         </Content>
