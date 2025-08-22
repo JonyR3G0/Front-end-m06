@@ -12,12 +12,10 @@ const generateRandomInt = (multFactor) => {
 
 export const Game = () => {
   const [randomInt, setRandomInt] = useState(0)
-  const [answer, setAnswer] = useState(0)
   const [status, setStatus] = useState('hola')
+  const [color, setColor] = useState('#64748b')
 
-  const inputHandler = (event) => {
-    setAnswer(event.target.value)
-  }
+
 
   useEffect(() => {
     setRandomInt(generateRandomInt(100))
@@ -26,20 +24,27 @@ export const Game = () => {
   useEffect(() => {
     if (answer < randomInt) {
       setStatus('frio')
+      setColor('#06b6d4')
     }
     if (answer > randomInt) {
       setStatus('caliente')
+      setColor('#dc2626')
     }
     if (parseInt(answer) === parseInt(randomInt)) {
-      setStatus('ganate')
+      setStatus('Felicidades has ganado.')
+      setColor('#4ade80')
     }
   }, [answer, randomInt])
 
   return (
-    <div className='text-amber-50 absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]'>
+    <div
+      className='text-amber-50 absolute inset-0 -z-10 h-full w-full items-center px-5 py-24'
+      style={{
+        background: `radial-gradient(125% 125% at 50% 10%, #000 40%, ${color} 100%)`
+      }}
+    >
       <div>{randomInt}</div>
       <p>{status}</p>
-      <input onChange={inputHandler} type='number' min='0' name='' id='' />
     </div>
 
   )
