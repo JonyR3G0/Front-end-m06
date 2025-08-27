@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const InpunNumber = () => {
+export const InputNumber = () => {
   const [answer, setAnswer] = useState(0)
 
   const inputHandler = (event) => {

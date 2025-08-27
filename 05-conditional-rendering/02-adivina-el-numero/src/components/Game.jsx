@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { StatusTurn } from '../context/StatusContext'
+import {}
 
 const generateRandomInt = (multFactor) => {
   return Math.floor(Math.random() * multFactor)
@@ -15,26 +17,28 @@ export const Game = () => {
   const [status, setStatus] = useState('hola')
   const [color, setColor] = useState('#64748b')
 
+  const { state, setState } = useContext(StatusTurn)
 
+  // setState(1)
 
   useEffect(() => {
     setRandomInt(generateRandomInt(100))
   }, [])
 
   useEffect(() => {
-    if (answer < randomInt) {
+    if (state < randomInt) {
       setStatus('frio')
       setColor('#06b6d4')
     }
-    if (answer > randomInt) {
+    if (state > randomInt) {
       setStatus('caliente')
       setColor('#dc2626')
     }
-    if (parseInt(answer) === parseInt(randomInt)) {
+    if (parseInt(state) === parseInt(randomInt)) {
       setStatus('Felicidades has ganado.')
       setColor('#4ade80')
     }
-  }, [answer, randomInt])
+  }, [state, randomInt])
 
   return (
     <div

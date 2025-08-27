@@ -1,9 +1,18 @@
-import { createContext } from "react";
+import { children, createContext, useState } from 'react'
 
-export const StatusContext = createContext(null);
+export const StatusTurn = createContext('')
 
-export const StatusContext = () => {
+export const StatusContext = ({ children }) => {
+  const [state, setState] = useState('frio')
+  const StateObject = {
+    state,
+    setState
+  }
   return (
 
-)
+    <StatusTurn.Provider value={StateObject}>
+      {children}
+    </StatusTurn.Provider>
+
+  )
 }
