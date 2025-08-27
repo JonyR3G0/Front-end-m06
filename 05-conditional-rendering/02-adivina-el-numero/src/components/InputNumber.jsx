@@ -1,14 +1,9 @@
 import React from 'react'
 
-export const InputNumber = () => {
-  const [answer, setAnswer] = useState(0)
-
-  const inputHandler = (event) => {
-    setAnswer(event.target.value)
-  }
+export const InputNumber = ({ getInputNumber, userInput }) => {
   return (
     <div>
-      <input onChange={inputHandler} type='number' min='0' name='' id='' />
+      <input className='border-1 rounded-4xl p-1 border-slate-800 active:caret-amber-50 transition-all duration-300 ease-in-out' onChange={(e) => getInputNumber(e.target.value)} type='number' min='0' max={100} name='' id='' defaultValue={userInput} />
     </div>
 
   )
