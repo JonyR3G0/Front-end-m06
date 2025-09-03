@@ -1,3 +1,4 @@
+// This function is called by the button to reload the page, and thus, generating a new random number.
 function restartGame () {
   location.reload()
 }
