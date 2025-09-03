@@ -1,7 +1,10 @@
 import React from 'react'
+import { FormComponent } from './components/FormComponent.jsx'
 
 export const App = () => {
   return (
-    <div>App</div>
+    <>
+      <FormComponent></FormComponent>
+    </>
   )
 }
