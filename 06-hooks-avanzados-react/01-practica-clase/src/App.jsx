@@ -1,10 +1,10 @@
 import React from 'react'
-import { FormComponent } from './components/FormComponent.jsx'
+import { FormComponentUseRef } from './components/FormComponentUseRef.jsx'
 
 export const App = () => {
   return (
     <>
-      <FormComponent></FormComponent>
+      <FormComponentUseRef></FormComponentUseRef>
     </>
   )
 }
