@@ -1,32 +1,35 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { InputNumber } from './InputNumber'
-import { Message } from './Message'
-import { RestartButton } from './RestartButton'
-import { InputUserContext } from '../context/InputContext'
-
-const generateRandomInt = (multFactor) => {
-  return Math.floor(Math.random() * multFactor)
-}
-
 // En el componente Game, genera un número aleatorio entre 1 y 100 cuando el juego comienza.
 // Guarda el estado del número ingresado y la respuesta en useuserInput.
 // Compara el número ingresado con el generado y usa renderización condicional para mostrar:
 //     "¡Correcto!" si el usuario acierta.
 //     "El número es mayor" o "El número es menor" como pistas.
 
+import React, { useContext, useEffect, useState } from 'react'
+import { InputNumber } from './InputNumber'
+import { Message } from './Message'
+import { RestartButton } from './RestartButton'
+import { InputUserContext } from '../context/InputContext'
+
+/**
+ * This function generates a random int number using the multFactor
+ *
+ * @param {number} multFactor any int. use it to modify the range of the return
+ * @returns {number} returns a random int number
+ */
+const generateRandomInt = (multFactor) => {
+  return Math.floor(Math.random() * multFactor)
+}
+
+// Main component
 export const Game = () => {
   // Importing and destructuring the user input context
-  const { inputContextState, setInputContextState } = useContext(InputUserContext)
+  const { inputContextState } = useContext(InputUserContext)
+
   // userInput for managing the random number to guess, it uses useuserInput for restarting the round
   const [randomInt, setRandomInt] = useState(0)
+
   // userInput for managing the dinamic background bgColor
   const [bgColor, setBgColor] = useState('#64748b')
-  // userInput for managing the user input
-  // const [userInput, setUserInput] = useState(1)
-
-  // function getInputNumber (numberGuess) {
-  //   setUserInput(numberGuess)
-  // }
 
   /**
    * This hook creates a random number between 1-100 every time the component is loaded
@@ -35,6 +38,10 @@ export const Game = () => {
     setRandomInt(generateRandomInt(100) + 1)
   }, [setRandomInt])
 
+  /**
+   * This useEffect Hook manages the color of the background dinamically using the user inmput to represent cold, hot and wining colors. The background has a 10s delay between the transitions for dificulty purposes.
+   * Uses the same parameters as the message component. +-15 numbers close to winning is hot, anityng else is cold.
+   */
   useEffect(() => {
     if (inputContextState < randomInt + 15 && inputContextState > randomInt - 15) {
       setBgColor('#dc2626')
@@ -65,9 +72,8 @@ export const Game = () => {
         transition: 'all 10s ease-out'
       }}
     >
-      {/* <div>{randomInt}</div> */}
       <h1 className='text-5xl'>💥 Adivina adivinador 🤪</h1>
-      <h2 className='italic text-slate-500 pb-7'>(un numero entre el uno y el cien)</h2>
+      <h3 className='italic text-slate-500 pb-7'>(un numero entre el uno y el cien)</h3>
       <Message randomInt={randomInt} />
       <InputNumber />
       <RestartButton />
