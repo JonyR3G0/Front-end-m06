@@ -25,11 +25,16 @@ export const FormComponent = () => {
     })
   }
 
+  const onSubmit = (event) => {
+    event.preventDefault()
+    console.log(formData)
+  }
+
   return (
     // ? ==+ Class notes +==
     // When importing html elements, it's impotant to take on mind the reserved JS words
     // class => className, for => htmlFor and the closing tags (on form elements)
-    <form>
+    <form onSubmit={ onSubmit }>
       <div className="mb-3">
         <label htmlFor="userName" className="form-label">
           Name
