@@ -1,11 +1,11 @@
 import React from 'react'
 import { Game } from './components/Game'
-import { StatusContext } from './context/StatusContext'
+import { InputContext } from './context/InputContext'
 
 export const App = () => {
   return (
-    <StatusContext>
+    <InputContext>
       <Game />
-    </StatusContext>
+    </InputContext>
   )
 }

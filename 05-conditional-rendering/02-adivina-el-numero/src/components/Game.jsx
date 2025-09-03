@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { InputNumber } from './InputNumber'
 import { Message } from './Message'
 import { RestartButton } from './RestartButton'
+import { InputUserContext } from '../context/InputContext'
 
 const generateRandomInt = (multFactor) => {
   return Math.floor(Math.random() * multFactor)
@@ -14,18 +15,18 @@ const generateRandomInt = (multFactor) => {
 //     "El número es mayor" o "El número es menor" como pistas.
 
 export const Game = () => {
+  // Importing and destructuring the user input context
+  const { inputContextState, setInputContextState } = useContext(InputUserContext)
   // userInput for managing the random number to guess, it uses useuserInput for restarting the round
   const [randomInt, setRandomInt] = useState(0)
-  // userInput for the winning, cold/hot message
-  const [message, setMessage] = useState('hola')
   // userInput for managing the dinamic background bgColor
   const [bgColor, setBgColor] = useState('#64748b')
   // userInput for managing the user input
-  const [userInput, setUserInput] = useState(1)
+  // const [userInput, setUserInput] = useState(1)
 
-  function getInputNumber (numberGuess) {
-    setUserInput(numberGuess)
-  }
+  // function getInputNumber (numberGuess) {
+  //   setUserInput(numberGuess)
+  // }
 
   /**
    * This hook creates a random number between 1-100 every time the component is loaded
@@ -35,23 +36,22 @@ export const Game = () => {
   }, [setRandomInt])
 
   useEffect(() => {
-    if (userInput < randomInt) {
-      setMessage('frio')
-      setBgColor('#06b6d4')
-    }
-    if (userInput > randomInt) {
-      setMessage('caliente')
+    if (inputContextState < randomInt + 15 && inputContextState > randomInt - 15) {
       setBgColor('#dc2626')
+    } else {
+      setBgColor('#1d4ed8')
     }
-    if (parseInt(userInput) === parseInt(randomInt)) {
-      setMessage('Felicidades has ganado.')
+    if (parseInt(inputContextState) === parseInt(randomInt)) {
       setBgColor('#4ade80')
     }
-  }, [userInput, randomInt, setBgColor, setMessage])
+    if (parseInt(inputContextState) === parseInt(0)) {
+      setBgColor('#64748b')
+    }
+  }, [inputContextState, randomInt, setBgColor])
 
   return (
     <div
-      className='text-amber-50 flex flex-col transition-all absolute inset-0 -z-10 h-full w-full items-center px-5 py-24'
+      className='text-center justify-center text-amber-50 flex flex-col transition-all absolute inset-0 -z-10 h-full w-full items-center px-5 py-24'
       style={{
         background: `
       radial-gradient(
@@ -62,14 +62,14 @@ export const Game = () => {
       ),
       ${bgColor}
     `,
-        transition: 'all 1s ease-out'
+        transition: 'all 10s ease-out'
       }}
     >
       {/* <div>{randomInt}</div> */}
       <h1 className='text-5xl'>💥 Adivina adivinador 🤪</h1>
       <h2 className='italic text-slate-500 pb-7'>(un numero entre el uno y el cien)</h2>
-      <Message userInput={userInput} />
-      <InputNumber getInputNumber={getInputNumber} randomInt={randomInt} userInput={userInput} />
+      <Message randomInt={randomInt} />
+      <InputNumber />
       <RestartButton />
     </div>
 

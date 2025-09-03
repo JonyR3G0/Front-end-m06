@@ -1,7 +1,9 @@
-import React from 'react'
+function restartGame () {
+  location.reload()
+}
 
 export const RestartButton = () => {
   return (
-    <button>Reiniciar partida</button>
+    <button onClick={restartGame} className='p-3 bg-blue-700 rounded-2xl hover:cursor-pointer'>Reiniciar partida</button>
   )
 }
