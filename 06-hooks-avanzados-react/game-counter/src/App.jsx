@@ -1,7 +1,10 @@
 import React from 'react'
+import { CounterGame } from './CounterGame'
 
 export const App = () => {
   return (
-    <div>App</div>
+    <div className='background'>
+      <CounterGame/>
+    </div>
   )
 }

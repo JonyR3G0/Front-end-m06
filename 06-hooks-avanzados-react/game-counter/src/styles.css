@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+.background {
+  height: 100dvh;
+  width: 100dvw;
+  background-color: rgb(2, 2, 29);
+  background-image: url('./assets/background.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+* {
+    font-family: monospace;
+}
