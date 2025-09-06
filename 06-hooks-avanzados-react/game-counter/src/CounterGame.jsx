@@ -1,4 +1,4 @@
-import { useReducer, useRef, useCallback, useEffect, use } from "react";
+import { useReducer, useRef, useCallback, useEffect } from "react";
 
 const savedHistory = JSON.parse(localStorage.getItem("history"));
 const savedCount = parseInt(localStorage.getItem("count"));
@@ -6,6 +6,7 @@ const savedCount = parseInt(localStorage.getItem("count"));
 const initialState = { count: 0, history: [] };
 let userInput = null;
 
+// Main state managment function
 function reducer(state, action) {
   switch (action.type) {
     case "restoreHistory":
@@ -70,25 +71,25 @@ export function CounterGame() {
 
   const incrementBtnRef = useRef(null);
 
-  //   Retrieve saved information on loading
+  //   Retrieve saved information on loading ONLY if exists
   useEffect(() => {
     if (savedCount) {
       dispatch({ type: "restoreHistory" });
     }
-    console.log(savedCount, savedHistory);
   }, []);
 
+  // Saving states every time
   useEffect(() => {
-    // Saving states every time
     localStorage.setItem("count", state.count);
     localStorage.setItem("history", JSON.stringify(state.history));
   }, [state]);
 
-  // Fijar el foco en el botón de incremento al renderizar
+  // Focus on button when open
   useEffect(() => {
     incrementBtnRef.current.focus();
   }, []);
 
+  //   ===== HANDLERS =====
   const handleIncrement = useCallback(() => {
     dispatch({ type: "increment" });
   }, []);
@@ -108,9 +109,11 @@ export function CounterGame() {
   const handleInput = useCallback((e) => {
     // SUPER basic validation (only paliative)
     userInput = isNaN(parseInt(e.target.value)) ? 0 : e.target.value;
-    userInput = Math.floor(userInput)
+    userInput = Math.floor(userInput);
     if (e.key === "Enter") dispatch({ type: "userInput" });
   }, []);
+
+  //   xX===== HANDLERS =====Xx
 
   return (
     // Main container
