@@ -16,6 +16,35 @@ function reducer(state, action) {
       };
     case "reset":
       return initialState;
+    case "undo": {
+      //   If we have nothing or the first action is "undoed", it's basically a restart.
+      if (state.history.length === 0 || state.history.length === 1) {
+        return initialState;
+      } else {
+        // As we need to return something, we will return the last good element
+        // which happen to be, 2 positions behind the last.
+        const newHistory = state.history.slice(0, state.history.length - 2);
+        const lastGoodElement = state.history.slice(
+          state.history.length - 2,
+          state.history.length - 1
+        );
+        // Maybe tere's a more sophysticated way to do this rather tha this humungus thing, but it works
+        // it works well and without bugs.
+        
+        // I found some bugs without converting to string, working with lastGoodElement[0][(letter)]
+        // So, to get arround that, to string first
+        const lastGoodElementString =
+          lastGoodElement.toString()
+        // Then, we slice the part that contains the prev calculated on the messaje, and till the end -1
+        // to cover infinity cases of negative numbers and with all the 0's that you want.
+        // finally we parse the string number to int, so this way it gets back as a number.
+        const newCount = parseInt(lastGoodElementString.slice( 16, ( lastGoodElementString.length - 1 ) ))
+        return {
+          count: newCount,
+          history: [...newHistory, lastGoodElement],
+        };
+      }
+    }
     default:
       return state;
   }
@@ -23,7 +52,13 @@ function reducer(state, action) {
 
 export function CounterGame() {
   const [state, dispatch] = useReducer(reducer, initialState);
+
   const incrementBtnRef = useRef(null);
+
+  // Fijar el foco en el botón de incremento al renderizar
+  useEffect(() => {
+    incrementBtnRef.current.focus();
+  }, []);
 
   const handleIncrement = useCallback(() => {
     dispatch({ type: "increment" });
@@ -33,46 +68,73 @@ export function CounterGame() {
     dispatch({ type: "decrement" });
   }, []);
 
-  // Fijar el foco en el botón de incremento al renderizar
-  useEffect(() => {
-    incrementBtnRef.current.focus();
+  const handleReset = useCallback(() => {
+    dispatch({ type: "reset" });
+  }, []);
+
+  const handleUndo = useCallback(() => {
+    dispatch({ type: "undo" });
   }, []);
 
   return (
+    // Main container
     <div className="flex text-center text-lime-400 flex-col items-center">
+      {/* <p className="text-[30rem] blur-sm absolute">{state.count}</p> */}
       <h1 className="text-5xl p-5">Registro de cambios</h1>
       <p className="pb-3 text-fuchsia-800">
         <i>Demo tecnica useRef, useReducer, useCallback</i>
       </p>
-
+      {/* Info and buttons layer */}
       <div>
-        <h2 className="text-2xl">Contador: {state.count}</h2>
+        <div className="flex">
+          <h2 className="text-2xl flex-1">Contador: {state.count}</h2>
+          <input
+            className=" flex-1 border-2 border-cyan-400 m-1 rounded-2xl"
+            type="number"
+            name="Introy"
+            id=""
+          />
+        </div>
+
         <button
-          className="bg-cyan-300 rounded-2xl p-2 m-1 text-cyan-950"
+          className="border-2 border-cyan-400 p-2 m-1 rounded-2xl"
           ref={incrementBtnRef}
-          onClick={() => dispatch({ type: "increment" })}
+          onClick={handleIncrement}
         >
-          +
+          Incrementar
         </button>
+
         <button
-          className="bg-fuchsia-500 rounded-2xl p-2 m-1 text-fuchsia-950"
-          onClick={() => dispatch({ type: "decrement" })}
+          className="border-2 border-cyan-400 p-2 m-1 rounded-2xl"
+          onClick={handleDecrement}
         >
-          -
+          Decrementar
         </button>
-        <button onClick={() => dispatch({ type: "reset" })}>Reset</button>
 
-        <button ref={incrementBtnRef} onClick={handleIncrement}>
-          +
+        <button
+          className="border-2 border-cyan-400 p-2 m-1 rounded-2xl"
+          onClick={handleUndo}
+        >
+          Deshacer
         </button>
-        <button onClick={handleDecrement}>-</button>
+
+        <button
+          className="border-2 border-cyan-400 p-2 m-1 rounded-2xl"
+          onClick={handleReset}
+        >
+          Reiniciar
+        </button>
       </div>
-
+      {/* Console emulation layer */}
       <div className="m-3 bg-black/50 w-150 text-left text-lime-400 p-2 rounded-2xl h-100 overflow-y-scroll">
-        <h3 className="italic underline font-bold text-fuchsia-700">Historial de cambios:</h3>
+        <h3 className="italic underline font-bold text-fuchsia-700">
+          Historial de cambios:
+        </h3>
         <ul>
           {state.history.map((entry, index) => (
-            <li key={index}><strong>web@user$:</strong> <i>{entry}</i></li>
+            <li key={index}>
+              <strong>web@user$:</strong> <i>{entry}</i>
+            </li>
           ))}
         </ul>
       </div>
