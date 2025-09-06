@@ -108,7 +108,7 @@ export function CounterGame() {
   const handleInput = useCallback((e) => {
     // SUPER basic validation (only paliative)
     userInput = isNaN(parseInt(e.target.value)) ? 0 : e.target.value;
-    Math.floor(userInput)
+    userInput = Math.floor(userInput)
     if (e.key === "Enter") dispatch({ type: "userInput" });
   }, []);
 
