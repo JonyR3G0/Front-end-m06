@@ -1,10 +1,18 @@
-import { useReducer, useRef, useCallback, useEffect } from "react";
+import { useReducer, useRef, useCallback, useEffect, use } from "react";
+
+const savedHistory = JSON.parse(localStorage.getItem("history"));
+const savedCount = parseInt(localStorage.getItem("count"));
 
 const initialState = { count: 0, history: [] };
-let userInput = null
+let userInput = null;
 
 function reducer(state, action) {
   switch (action.type) {
+    case "restoreHistory":
+      return {
+        count: savedCount,
+        history: [...savedHistory],
+      };
     case "increment":
       return {
         count: state.count + 1,
@@ -16,7 +24,7 @@ function reducer(state, action) {
         history: [...state.history, `-1 (Nuevo valor: ${state.count - 1})`],
       };
     case "userInput":
-        return {
+      return {
         count: userInput,
         history: [...state.history, `UI (Nuevo valor: ${userInput})`],
       };
@@ -36,15 +44,16 @@ function reducer(state, action) {
         );
         // Maybe tere's a more sophysticated way to do this rather tha this humungus thing, but it works
         // it works well and without bugs.
-        
+
         // I found some bugs without converting to string, working with lastGoodElement[0][(letter)]
         // So, to get arround that, to string first
-        const lastGoodElementString =
-          lastGoodElement.toString()
+        const lastGoodElementString = lastGoodElement.toString();
         // Then, we slice the part that contains the prev calculated on the messaje, and till the end -1
         // to cover infinity cases of negative numbers and with all the 0's that you want.
         // finally we parse the string number to int, so this way it gets back as a number.
-        const newCount = parseInt(lastGoodElementString.slice( 16, ( lastGoodElementString.length - 1 ) ))
+        const newCount = parseInt(
+          lastGoodElementString.slice(16, lastGoodElementString.length - 1)
+        );
         return {
           count: newCount,
           history: [...newHistory, lastGoodElement],
@@ -60,6 +69,20 @@ export function CounterGame() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const incrementBtnRef = useRef(null);
+
+  //   Retrieve saved information on loading
+  useEffect(() => {
+    if (savedCount) {
+      dispatch({ type: "restoreHistory" });
+    }
+    console.log(savedCount, savedHistory);
+  }, []);
+
+  useEffect(() => {
+    // Saving states every time
+    localStorage.setItem("count", state.count);
+    localStorage.setItem("history", JSON.stringify(state.history));
+  }, [state]);
 
   // Fijar el foco en el botón de incremento al renderizar
   useEffect(() => {
@@ -83,8 +106,7 @@ export function CounterGame() {
   }, []);
 
   const handleInput = useCallback((e) => {
-    userInput = e.target.value
-    if(e.key === 'Enter') dispatch({ type: "userInput" })
+    if (e.key === "Enter") dispatch({ type: "userInput" });
   }, []);
 
   return (
@@ -98,7 +120,10 @@ export function CounterGame() {
       {/* Info and buttons layer */}
       <div>
         <div className="flex">
-          <h2 className="text-2xl flex-1 font-bold text-amber-50 bg-slate-500 text-center rounded-2xl mb-2 mr-1"> {state.count}</h2>
+          <h2 className="text-2xl flex-1 font-bold text-amber-50 bg-slate-500 text-center rounded-2xl mb-2 mr-1">
+            {" "}
+            {state.count}
+          </h2>
           <input
             className=" flex-1 border-2 p-1 border-slate-500 text-amber-50 rounded-2xl h-max mb-2 ml-1"
             type="number"
@@ -144,7 +169,8 @@ export function CounterGame() {
         <ul>
           {state.history.map((entry, index) => (
             <li key={index}>
-              <strong className=" text-lime-400 ">web@user$:</strong> <i>{entry}</i>
+              <strong className=" text-lime-400 ">web@user$:</strong>{" "}
+              <i>{entry}</i>
             </li>
           ))}
         </ul>
