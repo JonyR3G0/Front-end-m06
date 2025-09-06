@@ -92,15 +92,15 @@ export function CounterGame() {
     <div className="flex text-center text-lime-400 flex-col items-center">
       {/* <p className="text-[30rem] blur-sm absolute">{state.count}</p> */}
       <h1 className="text-5xl p-5">Registro de cambios</h1>
-      <p className="pb-3 text-fuchsia-800">
+      <p className="pb-3 text-amber-50">
         <i>Demo tecnica useRef, useReducer, useCallback</i>
       </p>
       {/* Info and buttons layer */}
       <div>
         <div className="flex">
-          <h2 className="text-2xl flex-1">Contador: {state.count}</h2>
+          <h2 className="text-2xl flex-1 font-bold text-amber-50 bg-slate-500 text-center rounded-2xl mb-2 mr-1"> {state.count}</h2>
           <input
-            className=" flex-1 border-2 border-cyan-400 m-1 rounded-2xl"
+            className=" flex-1 border-2 p-1 border-slate-500 text-amber-50 rounded-2xl h-max mb-2 ml-1"
             type="number"
             onKeyDown={handleInput}
             placeholder="Enter para confirmar"
@@ -108,7 +108,7 @@ export function CounterGame() {
         </div>
 
         <button
-          className="border-2 border-cyan-400 p-2 m-1 rounded-2xl"
+          className="border-2 bg-lime-950 p-2 m-1 rounded-2xl"
           ref={incrementBtnRef}
           onClick={handleIncrement}
         >
@@ -116,35 +116,35 @@ export function CounterGame() {
         </button>
 
         <button
-          className="border-2 border-cyan-400 p-2 m-1 rounded-2xl"
+          className="border-2 bg-lime-950 p-2 m-1 rounded-2xl"
           onClick={handleDecrement}
         >
           Decrementar
         </button>
 
         <button
-          className="border-2 border-cyan-400 p-2 m-1 rounded-2xl"
+          className="border-2 bg-lime-950 p-2 m-1 rounded-2xl"
           onClick={handleUndo}
         >
           Deshacer
         </button>
 
         <button
-          className="border-2 border-cyan-400 p-2 m-1 rounded-2xl"
+          className="border-2 bg-lime-950 p-2 m-1 rounded-2xl"
           onClick={handleReset}
         >
           Reiniciar
         </button>
       </div>
       {/* Console emulation layer */}
-      <div className="m-3 bg-black/50 w-150 text-left text-lime-400 p-2 rounded-2xl h-100 overflow-y-scroll">
-        <h3 className="italic underline font-bold text-fuchsia-700">
-          Historial de cambios:
+      <div className="m-3 bg-black/50 text-fuchsia-800 w-150 text-left p-2 rounded-2xl h-100 overflow-y-scroll">
+        <h3 className="font-bold text-amber-50 bg-slate-500 text-center rounded-2xl mb-2">
+          Historial de cambios web@user$
         </h3>
         <ul>
           {state.history.map((entry, index) => (
             <li key={index}>
-              <strong>web@user$:</strong> <i>{entry}</i>
+              <strong className=" text-lime-400 ">web@user$:</strong> <i>{entry}</i>
             </li>
           ))}
         </ul>
