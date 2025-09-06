@@ -1,6 +1,7 @@
 import { useReducer, useRef, useCallback, useEffect } from "react";
 
 const initialState = { count: 0, history: [] };
+let userInput = null
 
 function reducer(state, action) {
   switch (action.type) {
@@ -13,6 +14,11 @@ function reducer(state, action) {
       return {
         count: state.count - 1,
         history: [...state.history, `-1 (Nuevo valor: ${state.count - 1})`],
+      };
+    case "userInput":
+        return {
+        count: userInput,
+        history: [...state.history, `UI (Nuevo valor: ${userInput})`],
       };
     case "reset":
       return initialState;
@@ -76,6 +82,11 @@ export function CounterGame() {
     dispatch({ type: "undo" });
   }, []);
 
+  const handleInput = useCallback((e) => {
+    userInput = e.target.value
+    if(e.key === 'Enter') dispatch({ type: "userInput" })
+  }, []);
+
   return (
     // Main container
     <div className="flex text-center text-lime-400 flex-col items-center">
@@ -91,8 +102,8 @@ export function CounterGame() {
           <input
             className=" flex-1 border-2 border-cyan-400 m-1 rounded-2xl"
             type="number"
-            name="Introy"
-            id=""
+            onKeyDown={handleInput}
+            placeholder="Enter para confirmar"
           />
         </div>
 
