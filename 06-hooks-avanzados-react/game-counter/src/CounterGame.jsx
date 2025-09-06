@@ -106,6 +106,9 @@ export function CounterGame() {
   }, []);
 
   const handleInput = useCallback((e) => {
+    // SUPER basic validation (only paliative)
+    userInput = isNaN(parseInt(e.target.value)) ? 0 : e.target.value;
+    Math.floor(userInput)
     if (e.key === "Enter") dispatch({ type: "userInput" });
   }, []);
 
@@ -127,6 +130,7 @@ export function CounterGame() {
           <input
             className=" flex-1 border-2 p-1 border-slate-500 text-amber-50 rounded-2xl h-max mb-2 ml-1"
             type="number"
+            step={1}
             onKeyDown={handleInput}
             placeholder="Enter para confirmar"
           />
