@@ -1,12 +1,25 @@
-# React + Vite
+# Registro de cambios 📝
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Workshop #6 del modulo.
 
-Currently, two official plugins are available:
+![demo](./src/assets/demo%20count%20game.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Funcionalidades
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Incrementar / Decrementar** el contador.
+- **Input manual** → escribes un número y confirmas con `Enter`.
+- **Undo** → deshacer último cambio (con lógica para evitar bugs raros).
+- **Reset** → vuelve a cero todo.
+- Historial guardado en `localStorage` (persistencia al recargar).
+
+---
+
+## 🛠️ Tecnologías usadas
+
+- **React** (hooks: `useReducer`, `useRef`, `useCallback`, `useEffect`)
+- **TailwindCSS** para estilos rápidos.
+- `localStorage` para persistencia.
+
+---
