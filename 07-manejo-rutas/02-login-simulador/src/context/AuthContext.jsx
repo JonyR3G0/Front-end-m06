@@ -1,26 +1,29 @@
 // 1. Create the context
-import { useContext, useState } from "react"
+import { createContext, useState, useContext } from "react";
 
-const AuthContext = useContext()
+const AuthContext = createContext();
 
 // 3. Creating a personalized hook
 export function useAuth() {
-    return useContext(AuthContext)
+  return useContext(AuthContext);
 }
 
 // 2.Creating the provider
 export function AuthContextProvider({ children }) {
   const [isAuth, setIsAuth] = useState(false);
+  
   const login = (callback) => {
     setIsAuth(true);
     callback();
   };
 
-    const logout = () => {
+  const logout = () => {
     setIsAuth(false);
   };
 
   return (
-    <AuthContext.Provider value={{ isAuth, login, logout }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ isAuth, login, logout }}>
+      {children}
+    </AuthContext.Provider>
   );
 }
