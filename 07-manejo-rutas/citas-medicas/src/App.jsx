@@ -7,10 +7,7 @@ import NotFound from './pages/NotFound';
 function App() {
   return (
     <BrowserRouter>
-      <nav>
-        <Link to="/">Inicio</Link>
-        <Link to="/citas">Ver Citas</Link>
-      </nav>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/citas" element={<Citas />} />

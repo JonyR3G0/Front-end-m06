@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+h1{
+  font-family: "Gabarito", sans-serif;
+}
+
+*{
+    font-family: "Quicksand", sans-serif;
+}
+
+.buttonCustom{
+  transition: all 0.2s ease-out;
+}
+
+.buttonCustom:hover{
+  transform: scale(1.05);
+}
