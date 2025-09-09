@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import icon from "../assets/cros.svg";
-import { Calendar, Search } from "lucide-react";
+import { Calendar, Search, CalendarPlus } from "lucide-react";
 import { QSearch } from "./QSearch";
 import { useState } from "react";
+import { CreateCite } from "./CreateCite";
 
 export default function Home() {
 
-    const [render, setRender] = useState(false)
+    const [renderQSearch, setRenderQSearch] = useState(false)
+    const [renderCite, setRenderCite] = useState(false)
 
     return (
     <div className="relative min-h-screen">
@@ -30,7 +32,8 @@ export default function Home() {
       {/* Center z-10 */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center p-4 mr-10 ml-10">
         {/* Searchbar op */}
-        {render ? <QSearch /> : null}
+        {renderQSearch ? <QSearch /> : null}
+        {renderCite ? <CreateCite /> : null}
         {/* Tile */}
         <div className="flex items-center justify-center text-center">
           <img
@@ -70,7 +73,17 @@ export default function Home() {
             <span>Buscar una cita</span>
           </Link> */}
           <button
-            onClick={() => {setRender(true)}}
+            onClick={() => {setRenderCite(true)}}
+            className="flex items-center gap-2 text-gray-300 hover:text-emerald-200 hover:bg-emerald-950 
+             transition-colors duration-400 buttonCustom border border-gray-300 
+             hover:border-emerald-400 rounded-3xl px-4 py-2 text-sm"
+          >
+            <CalendarPlus strokeWidth={2} size={15} />
+            <span>Crear una cita</span>
+          </button>
+
+          <button
+            onClick={() => {setRenderQSearch(true)}}
             className="flex items-center gap-2 text-gray-300 hover:text-emerald-200 hover:bg-emerald-950 
              transition-colors duration-400 buttonCustom border border-gray-300 
              hover:border-emerald-400 rounded-3xl px-4 py-2 text-sm"

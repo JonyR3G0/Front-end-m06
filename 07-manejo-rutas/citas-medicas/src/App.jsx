@@ -11,6 +11,7 @@ function App() {
       <CitesContextProvider>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/citas" element={<Citas />} />
           <Route path="/cita/:id" element={<CitaDetalle />} />
           <Route path="*" element={<NotFound />} />
