@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
 import icon from "../assets/cros.svg";
 import { Calendar, Search } from "lucide-react";
+import { QSearch } from "./QSearch";
+import { useState } from "react";
 
 export default function Home() {
-  return (
+
+    const [render, setRender] = useState(false)
+
+    return (
     <div className="relative min-h-screen">
       {/* --- BACKGROUND --- */}
       <div className="absolute inset-0 bg-white dark:bg-gray-950">
@@ -21,10 +26,11 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-tr from-yellow-50/30 via-transparent to-pink-50/30 dark:from-yellow-950/20 dark:via-transparent dark:to-pink-950/20" />
       </div>
       {/* --- BACKGROUND --- */}
-
       {/* --- Main --- */}
       {/* Center z-10 */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center p-4 mr-10 ml-10">
+        {/* Searchbar op */}
+        {render ? <QSearch /> : null}
         {/* Tile */}
         <div className="flex items-center justify-center text-center">
           <img
@@ -54,7 +60,7 @@ export default function Home() {
             <Calendar strokeWidth={2} size={15} />
             <span>Ver lista de citas</span>
           </Link>
-          <Link
+          {/* <Link
             to="/citas123"
             className="flex items-center gap-2 text-gray-300 hover:text-emerald-200 hover:bg-emerald-950 
              transition-colors duration-400 buttonCustom border border-gray-300 
@@ -62,7 +68,16 @@ export default function Home() {
           >
             <Search strokeWidth={2} size={15} />
             <span>Buscar una cita</span>
-          </Link>
+          </Link> */}
+          <button
+            onClick={() => {setRender(true)}}
+            className="flex items-center gap-2 text-gray-300 hover:text-emerald-200 hover:bg-emerald-950 
+             transition-colors duration-400 buttonCustom border border-gray-300 
+             hover:border-emerald-400 rounded-3xl px-4 py-2 text-sm"
+          >
+            <Search strokeWidth={2} size={15} />
+            <span>Buscar una cita</span>
+          </button>
         </nav>
       </div>
     </div>
