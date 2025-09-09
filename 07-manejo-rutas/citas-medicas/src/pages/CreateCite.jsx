@@ -13,7 +13,7 @@ export const CreateCite = () => {
     e.target.reset();
     alert('Cita registrada, se redireccionara a la cita despues de aceptar')
     setTimeout(() => {
-        Navigate(/cita/ + citesList.length)        
+        Navigate(/cita/ + citesList)        
     }, 1000);
   };
 

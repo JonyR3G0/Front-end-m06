@@ -1,15 +1,7 @@
-import React from "react";
-
-import { Link } from "react-router-dom";
-import icon from "../assets/cros.svg";
-import { Calendar, Search, CalendarPlus } from "lucide-react";
-import { QSearch } from "./QSearch";
-import { useState } from "react";
-import { CreateCite } from "./CreateCite";
+import { useCitesContext } from "../context/CitesContext";
 
 export default function Citas() {
-  const [renderQSearch, setRenderQSearch] = useState(false);
-  const [renderCite, setRenderCite] = useState(false);
+  const { citesList } = useCitesContext();
 
   return (
     <div className="relative min-h-screen">
@@ -31,16 +23,22 @@ export default function Citas() {
       {/* --- BACKGROUND --- */}
       {/* --- Main --- */}
       {/* Center z-10 */}
-      <div className="relative z-10 flex flex-col items-start justify-start min-h-screen text-center p-4 mr-10 ml-10 p-10">
+      <div className="relative z-10 flex flex-col items-start justify-start min-h-screen text-center  mr-10 ml-10 p-10">
         {/* Tile */}
 
         <h1 className="text-5xl font-extrabold bg-gradient-to-r from-gray-50 to-gray-400 bg-clip-text text-transparent">
           LISTA DE CITAS
         </h1>
         {/* Nav */}
-          <div className="border border-amber-50 rounded-2xl w-full text-amber-50 p-5 mt-5 text-left">
-            <p>Lista Map</p>
-          </div>
+        <div className="border border-amber-50 rounded-2xl w-full text-amber-50 p-5 mt-5 text-left">
+          <ul>
+            {citesList.map((entry, index) => (
+              <li key={index}>
+                <i>{entry}</i>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
