@@ -1,7 +1,14 @@
+import { use, useEffect } from "react";
 import { useCitesContext } from "../context/CitesContext";
 
+const savedCites = parseInt(localStorage.getItem("citesList"));
+
 export default function Citas() {
-  const { citesList } = useCitesContext();
+
+  useEffect(() => {
+    console.log(savedCites)
+  }, [])
+  
 
   return (
     <div className="relative min-h-screen">
@@ -32,11 +39,11 @@ export default function Citas() {
         {/* Nav */}
         <div className="border border-amber-50 rounded-2xl w-full text-amber-50 p-5 mt-5 text-left">
           <ul>
-            {citesList.map((entry, index) => (
+            {/* {savedCites.map((entry, index) => (
               <li key={index}>
                 <i>{entry}</i>
               </li>
-            ))}
+            ))} */}
           </ul>
         </div>
       </div>

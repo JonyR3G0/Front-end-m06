@@ -1,8 +1,10 @@
 import { CalendarPlus, CircleX } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 import { useCitesContext } from "../context/CitesContext";
+import { useEffect } from "react";
 
 export const CreateCite = () => {
+
   const { citesList, setCitesList } = useCitesContext();
   const Navigate = useNavigate();
   const mangeSubmit = (e) => {
@@ -10,6 +12,7 @@ export const CreateCite = () => {
     const formData = new FormData(e.target);
     setCitesList([...citesList, Object.fromEntries(formData.entries())]);
     console.log(Object.fromEntries(formData.entries()));
+    localStorage.setItem("list", citesList);
     e.target.reset();
     alert('Cita registrada, se redireccionara a la cita despues de aceptar')
     setTimeout(() => {
