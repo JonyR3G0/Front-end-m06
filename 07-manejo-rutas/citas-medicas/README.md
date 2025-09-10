@@ -1,8 +1,20 @@
 # 🩺 Portal de Citas
 
 Workshop #7 portal citas
- 
+
 Este proyecto permite **crear, buscar y listar citas médicas** de manera rápida y sencilla.  
+
+## 🔍 Spoiler
+Home
+![Home](src/assets/home.png)
+Crear cita
+![Crear cita](src/assets/crear.png)
+Buscar cita
+![Crear cita](src/assets/search.png)
+Lista de citas
+![Crear cita](src/assets/lista.png)
+Detalle de cita
+![Crear cita](src/assets/details.png)
 
 ## 🚀 Tecnologías
 - **React + Vite** → para el front y navegación.
