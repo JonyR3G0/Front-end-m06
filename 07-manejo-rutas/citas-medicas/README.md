@@ -1,12 +1,20 @@
-# React + Vite
+# 🩺 Portal de Citas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Workshop #7 portal citas
+ 
+Este proyecto permite **crear, buscar y listar citas médicas** de manera rápida y sencilla.  
 
-Currently, two official plugins are available:
+## 🚀 Tecnologías
+- **React + Vite** → para el front y navegación.
+- **React Router DOM** → manejo de rutas dinámicas (`/cita/:id`).
+- **Context API** → estado global para la lista de citas.
+- **TailwindCSS** → estilos modernos y responsivos.
+- **Lucide React** → íconos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚙️ Funcionamiento
+- Crear citas con nombre, apellido, fecha y hora.  
+- Cada cita se guarda en **localStorage** para no perderse al recargar.  
+- Se asigna un **ID automático** a cada cita.  
+- Al crear una cita, el usuario es redirigido al detalle.  
+- También se puede ver la lista completa o buscar por ID.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
