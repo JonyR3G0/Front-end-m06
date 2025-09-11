@@ -1,12 +1,52 @@
-# React + Vite
+# Mi Twitter Clon  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Proyecto #8 del modulo 06
 
-Currently, two official plugins are available:
+La idea es construir un clon simplificado de Twitter donde se puede:  
+- Ver una línea de tiempo de tweets.  
+- Publicar nuevos tweets.  
+- Dar “me gusta” a los tweets.  
+- Manejar estado con hooks y guardar datos en localStorage.  
+- Implementar rutas protegidas con React Router.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> [!IMPORTANT]  
+> Este proyecto usa **React con Vite**, junto con **React Router DOM** y **localStorage** para persistencia.  
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📂 Estructura del proyecto 
+``` bash
+/mi-twitter-clon
+│── public/
+│── src/
+│ ├── components/
+│ │ ├── Tweet.js
+│ │ ├── TweetList.js
+│ │ ├── TweetForm.js
+│ ├── pages/
+│ │ ├── Home.js
+│ │ ├── Profile.js
+│ │ ├── Login.js
+│ ├── App.js
+│ ├── index.js
+│── package.json
+│── README.md
+```
+
+---
+
+## ⚙️ Funcionalidad principal  
+
+- `Tweet.js`: renderiza un tweet individual con botón de “me gusta”.  
+- `TweetList.js`: lista todos los tweets.  
+- `TweetForm.js`: formulario para publicar un nuevo tweet.  
+- `Home.js`: timeline con estado y persistencia en localStorage.  
+- `Profile.js`: perfil del usuario (ruta protegida).  
+- `Login.js`: inicio de sesión y control de autenticación.  
+
+> [!NOTE]  
+> Si intentas acceder a **/profile** sin estar autenticado → se redirige automáticamente al login.  
+
+---
+
+## 📝 Notas  
