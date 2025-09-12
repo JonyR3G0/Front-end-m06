@@ -1,9 +1,9 @@
-import React from "react";
-import { Star } from "lucide-react";
-const stars = 1;
+import React from 'react'
+import { Star } from 'lucide-react'
+const stars = 1
 
-const tweetContainerStyle = "text-white";
-const starButtonStyle = "flex";
+const tweetContainerStyle = 'text-white'
+const starButtonStyle = 'flex'
 
 export const Tweet = ({ tweet, onStar }) => {
   return (
@@ -14,5 +14,5 @@ export const Tweet = ({ tweet, onStar }) => {
         {stars} <Star />
       </button>
     </div>
-  );
-};
+  )
+}
