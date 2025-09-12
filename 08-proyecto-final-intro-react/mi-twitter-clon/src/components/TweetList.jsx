@@ -2,11 +2,11 @@ import {
   Tweet
 } from './Tweet'
 
-export const TweetList = () => {
+export const TweetList = ({ tweet, onStar }) => {
   return (
     <div>
       {/* Needs a map function */}
-      <Tweet tweet='Lorem Tweet' onStar='' />
+      <Tweet tweet={tweet} onStar={onStar} />
     </div>
   )
 }
