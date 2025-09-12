@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const inputStyle = 'text-gray-300'
 const inputButtonPostStyle =
@@ -6,12 +6,24 @@ const inputButtonPostStyle =
 const buttonsContainerStyle =
 'border-t border-gray-700'
 
-export const TweetForm = () => {
+export const TweetForm = ({ onAddTweet }) => {
+  const [tweetText, setTweetText] = useState('')
+
+  const handleSubmit = event => {
+    event.preventDefault()
+    // A function that is provided by the father
+    // Saves the tweet on the tweets array memory
+    onAddTweet(tweetText)
+    setTweetText('')
+  }
+
   return (
-    <form action=''>
+    <form onSubmit={handleSubmit}>
       <input
         className={inputStyle}
         type='text'
+        value={tweetText}
+        onChange={event => setTweetText(event.target.value)}
         placeholder='¿Qué está pasando?'
       />
       <div className={buttonsContainerStyle}>
