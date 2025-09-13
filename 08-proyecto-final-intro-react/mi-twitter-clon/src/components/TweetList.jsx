@@ -5,8 +5,9 @@ import {
 export const TweetList = ({ tweet, onStar }) => {
   return (
     <div>
-      {/* Needs a map function */}
-      <Tweet tweet={tweet} onStar={onStar} />
+      {tweet.map(tweet =>
+        (<Tweet key={tweet.id} tweet={tweet} onStar={onStar} />
+        ))}
     </div>
   )
 }

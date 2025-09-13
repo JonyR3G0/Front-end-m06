@@ -13,6 +13,7 @@ export const TweetForm = ({ onAddTweet }) => {
     event.preventDefault()
     // A function that is provided by the father
     // Saves the tweet on the tweets array memory
+    if (!tweetText.trim()) return
     onAddTweet(tweetText)
     setTweetText('')
   }

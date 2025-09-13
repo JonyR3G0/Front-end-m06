@@ -10,30 +10,43 @@ export const HomePage = () => {
   // +=+ Importing tweets stored on LS +=+
   useEffect(() => {
     // Check for stored data, or import a empty array
-    const localStoredTweets = JSON.parse(localStorage.getItem('allTweets')) || []
+    const localStoredTweets =
+      JSON.parse(localStorage.getItem('allTweets')) || []
     // Setting that data on state
-    // setAllTweets(localStoredTweets)
-  }, [allTweets])
+    setAllTweets(localStoredTweets)
+  }, [])
 
   // +=+ Saving tweets on LS +=+
   useEffect(() => {
     localStorage.setItem('allTweets', JSON.stringify(allTweets))
   }, [allTweets])
 
-  const addTweet = tweetText => {
+  const addTweet = (tweetText) => {
     const newTweet = {
       id: Date.now(),
       // !New sintax learned, simplifyed version of object:object
       tweetText,
-      stars: 0
+      stars: 0,
     }
     setAllTweets([newTweet, ...allTweets])
+  }
+
+  const onStar = id => {
+    // I don't fully get it
+    setAllTweets(
+
+      allTweets.map((actualTweet) =>
+        id === actualTweet.id
+          ? { ...actualTweet, stars: actualTweet.stars + 1 }
+          : actualTweet
+      )
+    )
   }
 
   return (
     <section className={homeContainerStyle}>
       <TweetForm onAddTweet={addTweet} />
-      <TweetList tweet={allTweets} onStar='' />
+      <TweetList tweet={allTweets} onStar={onStar} />
     </section>
   )
 }
