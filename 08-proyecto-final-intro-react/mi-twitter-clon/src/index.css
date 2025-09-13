@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+.title_font{
+  font-family: "Kumar One Outline", system-ui;
+  font-weight: 800;
+  font-style: normal;
+}

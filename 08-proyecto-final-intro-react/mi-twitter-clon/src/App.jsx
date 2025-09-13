@@ -7,12 +7,13 @@ import { HomePage } from './pages/HomePage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Profile } from './pages/Profile'
 import { NotFound } from './pages/NotFound'
+import { Login } from './pages/Login'
 
 export const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<HomePage />} />
+        <Route path='/' element={<Login />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
