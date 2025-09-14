@@ -2,9 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { TweetForm } from '../components/TweetForm'
 import { TweetList } from '../components/TweetList'
 
-const homeContainerStyle = 'bg-black h-dvh'
+const homeContainerStyle = 'flex-2 border border-gray-700'
+const mainContainerStyle =
+'flex bg-black h-dvh'
+const asideContainerStyle =
+'flex-1'
 
 export const HomePage = () => {
+  useEffect(() => {
+    document.title = 'Home | Y'
+  }, [])
+
   const [allTweets, setAllTweets] = useState([])
 
   // +=+ Importing tweets stored on LS +=+
@@ -31,10 +39,9 @@ export const HomePage = () => {
     setAllTweets([newTweet, ...allTweets])
   }
 
-  const onStar = id => {
+  const onStar = (id) => {
     // I don't fully get it
     setAllTweets(
-
       allTweets.map((actualTweet) =>
         id === actualTweet.id
           ? { ...actualTweet, stars: actualTweet.stars + 1 }
@@ -44,9 +51,17 @@ export const HomePage = () => {
   }
 
   return (
-    <section className={homeContainerStyle}>
-      <TweetForm onAddTweet={addTweet} />
-      <TweetList tweet={allTweets} onStar={onStar} />
-    </section>
+    <main className={mainContainerStyle}>
+      <aside className={asideContainerStyle}>
+        <p>Lado menu</p>
+      </aside>
+      <section className={homeContainerStyle}>
+        <TweetForm onAddTweet={addTweet} />
+        <TweetList tweet={allTweets} onStar={onStar} />
+      </section>
+      <aside className={asideContainerStyle}>
+        <p>Lado publicidad</p>
+      </aside>
+    </main>
   )
 }

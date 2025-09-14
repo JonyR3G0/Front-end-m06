@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
-const inputStyle = 'text-gray-300'
+const inputStyle = 'text-gray-300 text-xl'
 const inputButtonPostStyle =
-'bg-white text-black rounded-2xl ps-2 pr-2 pt-1 pb-1 text-sm font-bold'
+'focus:ring-0 focus:outline-none bg-white text-black rounded-2xl ps-2 pr-2 pt-1 pb-1 text-sm font-bold'
 const buttonsContainerStyle =
-'border-t border-gray-700'
+'flex justify-end'
 
 export const TweetForm = ({ onAddTweet }) => {
   const [tweetText, setTweetText] = useState('')
@@ -19,18 +19,21 @@ export const TweetForm = ({ onAddTweet }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        className={inputStyle}
-        type='text'
-        value={tweetText}
-        onChange={event => setTweetText(event.target.value)}
-        placeholder='¿Qué está pasando?'
-      />
-      <div className={buttonsContainerStyle}>
-        <div />
-        <button type='submit' className={inputButtonPostStyle}>Postear</button>
-      </div>
-    </form>
+    <div className='flex '>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          className={inputStyle}
+          type='text'
+          value={tweetText}
+          onChange={event => setTweetText(event.target.value)}
+          placeholder='¿Qué está pasando?'
+        />
+        <div className={buttonsContainerStyle}>
+          <div />
+          <button type='submit' className={inputButtonPostStyle}>Postear</button>
+        </div>
+      </form>
+    </div>
   )
 }
