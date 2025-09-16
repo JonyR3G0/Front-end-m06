@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+import AvatarInitial from './AvatarInitial'
 
-const inputStyle = 'text-gray-300 text-xl'
+const inputStyle = 'text-white text-xl w-full h-auto border-none outline-none focus:ring-0 mr-5'
 const inputButtonPostStyle =
-'focus:ring-0 focus:outline-none bg-white text-black rounded-2xl ps-2 pr-2 pt-1 pb-1 text-sm font-bold'
+'focus:ring-0 focus:outline-none bg-white text-black rounded-2xl ps-3 pr-3 pt-2 pb-2 text-sm font-bold m-5'
 const buttonsContainerStyle =
 'flex justify-end'
 
@@ -19,16 +20,19 @@ export const TweetForm = ({ onAddTweet }) => {
   }
 
   return (
-    <div className='flex '>
-
-      <form onSubmit={handleSubmit}>
-        <input
+    <div className='flex border-b border-gray-600'>
+      <div className='m-5'>
+        <AvatarInitial name='Jonh Rego' size='sm' />
+      </div>
+      <form onSubmit={handleSubmit} className='w-full mt-5'>
+        <textarea
           className={inputStyle}
           type='text'
           value={tweetText}
           onChange={event => setTweetText(event.target.value)}
           placeholder='¿Qué está pasando?'
         />
+
         <div className={buttonsContainerStyle}>
           <div />
           <button type='submit' className={inputButtonPostStyle}>Postear</button>
