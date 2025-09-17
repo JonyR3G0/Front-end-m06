@@ -9,12 +9,11 @@ const buttonStyle =
 const buttonInvertedStyle =
   'border border-white rounded-4xl font-bold text-md p-2 w-1/2 hover:cursor-pointer hover:bg-gray-800 transition-all duration-300'
 
-//   TODO Actually implement this function and the login.
-const handleForm = (e) => {
-  e.preventDefault()
-}
-
-export const Login = () => {
+export const Login = ({ onLogin }) => {
+  const handleForm = (e) => {
+    e.preventDefault()
+    onLogin('paprica')
+  }
   return (
     <main className={loginContainerStyle}>
       {/* Left logo */}
