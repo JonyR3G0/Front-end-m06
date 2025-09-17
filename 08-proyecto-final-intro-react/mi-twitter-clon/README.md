@@ -14,6 +14,14 @@ La idea es construir un clon simplificado de Twitter donde se puede:
 
 ---
 
+## 🔍 Spoiler
+### Login
+![Login](/mi-twitter-clon/src/assets/login.png)
+### Main page
+![Login](/mi-twitter-clon/src/assets/mainPage.png)
+### User profile
+![Login](/mi-twitter-clon/src/assets/profile.png)
+
 ## 📂 Estructura del proyecto 
 ``` bash
 /mi-twitter-clon
