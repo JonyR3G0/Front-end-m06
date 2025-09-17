@@ -19,15 +19,15 @@ La idea es construir un clon simplificado de Twitter donde se puede:
 
 ### Login
 
-![Login](src\assets\login.png)
+![Login](https://github.com/JonyR3G0/Front-end-m06/blob/main/08-proyecto-final-intro-react/mi-twitter-clon/src/assets/login.png)
 
 ### Main page
 
-![Main page](src\assets\mainPage.png)
+![Main page](https://github.com/JonyR3G0/Front-end-m06/blob/main/08-proyecto-final-intro-react/mi-twitter-clon/src/assets/mainPage.png)
 
 ### User profile
 
-![User profile](src\assets\profile.png)
+![User profile](https://github.com/JonyR3G0/Front-end-m06/blob/main/08-proyecto-final-intro-react/mi-twitter-clon/src/assets/profile.png)
 
 ## 📂 Estructura del proyecto
 
