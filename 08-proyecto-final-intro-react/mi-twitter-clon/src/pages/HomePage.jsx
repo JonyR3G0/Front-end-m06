@@ -17,17 +17,19 @@ export const HomePage = () => {
     document.title = 'Home | Y'
   }, [])
 
-  const [allTweets, setAllTweets] = useState([])
-  const [user, setUser] = useState({ email: 'e' })
+  const getInitialTweets = () => {
+    const localStoredTweets = localStorage.getItem('allTweets')
+    // Si no hay nada, devuelve un array vacío. Si no, lo parsea y lo devuelve.
+    return localStoredTweets ? JSON.parse(localStoredTweets) : []
+  }
 
-  // +=+ Importing tweets stored on LS +=+
-  useEffect(() => {
-    // Check for stored data, or import a empty array
-    const localStoredTweets =
-      JSON.parse(localStorage.getItem('allTweets')) || []
-    // Setting that data on state
-    setAllTweets(localStoredTweets)
-  }, [])
+  const getUser = () => {
+    const storedUser = localStorage.getItem('user')
+    const user = storedUser ? JSON.parse(storedUser) : 'error'
+    return user.username
+  }
+  const [allTweets, setAllTweets] = useState(getInitialTweets)
+  const [user, setUser] = useState({ email: 'e' })
 
   // +=+ Saving tweets on LS +=+
   useEffect(() => {
@@ -36,6 +38,7 @@ export const HomePage = () => {
 
   const addTweet = (tweetText) => {
     const newTweet = {
+      user: getUser(),
       id: Date.now(),
       // !New sintax learned, simplifyed version of object:object
       tweetText,
@@ -61,6 +64,8 @@ export const HomePage = () => {
       setUser(JSON.parse(storedUser)
       )
     } else window.location.reload()
+    // Si esta página se renderiza, el usuario debe existir por la ruta protegida en App.jsx
+    if (storedUser) setUser(JSON.parse(storedUser))
   }, [])
 
   return (

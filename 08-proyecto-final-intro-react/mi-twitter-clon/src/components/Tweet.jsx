@@ -7,6 +7,7 @@ const starButtonStyle = 'flex'
 export const Tweet = ({ tweet, onStar }) => {
   return (
     <div className={tweetContainerStyle}>
+      <h1>{tweet.user}</h1>
       <p>{tweet.tweetText} </p>
 
       <button onClick={() => onStar(tweet.id)} className={starButtonStyle}>
