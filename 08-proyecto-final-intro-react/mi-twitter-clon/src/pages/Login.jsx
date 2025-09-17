@@ -16,7 +16,6 @@ export const Login = ({ onLogin }) => {
     const formData = new FormData(e.target)
     const userCredentials = formData.get('email')
     onLogin(userCredentials)
-    console.log(userCredentials)
   }
   return (
     <main className={loginContainerStyle}>
@@ -39,6 +38,7 @@ export const Login = ({ onLogin }) => {
                 required
               />
               <input
+                name='pass'
                 className={inputStyle}
                 placeholder='Contraseña'
                 type='password'

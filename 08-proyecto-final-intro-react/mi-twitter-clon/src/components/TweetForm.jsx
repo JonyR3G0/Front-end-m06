@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AvatarInitial from './AvatarInitial'
 
 const inputStyle = 'text-white text-xl w-full h-auto border-none outline-none focus:ring-0 mr-5'
@@ -9,6 +9,7 @@ const buttonsContainerStyle =
 
 export const TweetForm = ({ onAddTweet }) => {
   const [tweetText, setTweetText] = useState('')
+  const [user, setUser] = useState({ email: 'e' })
 
   const handleSubmit = event => {
     event.preventDefault()
@@ -19,10 +20,17 @@ export const TweetForm = ({ onAddTweet }) => {
     setTweetText('')
   }
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user')
+    if (storedUser) {
+      setUser(JSON.parse(storedUser))
+    }
+  }, [])
+
   return (
     <div className='flex border-b border-gray-600'>
       <div className='m-5'>
-        <AvatarInitial name='Jonh Rego' size='sm' />
+        <AvatarInitial name={user.username} size='sm' />
       </div>
       <form onSubmit={handleSubmit} className='w-full mt-5'>
         <textarea
