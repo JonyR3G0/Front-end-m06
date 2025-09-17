@@ -58,8 +58,9 @@ export const HomePage = () => {
   useEffect(() => {
     const storedUser = localStorage.getItem('user')
     if (storedUser) {
-      setUser(JSON.parse(storedUser))
-    }
+      setUser(JSON.parse(storedUser)
+      )
+    } else window.location.reload()
   }, [])
 
   return (

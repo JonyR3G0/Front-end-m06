@@ -17,7 +17,7 @@ export const App = () => {
     if (storedUser) {
       setUser(JSON.parse(storedUser))
     }
-  }, [])
+  }, [setUser])
 
   const login = (username) => {
     const userData = { username }
@@ -25,15 +25,10 @@ export const App = () => {
     localStorage.setItem('user', JSON.stringify(userData))
   }
 
-  const logout = () => {
-    setUser(null)
-    localStorage.removeItem('user')
-  }
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={user ? <HomePage /> : <Login onLogin={login} />} />
+        <Route path='/' element={!user || user === null ? <Login onLogin={login} /> : <HomePage />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='*' element={<NotFound />} />
       </Routes>

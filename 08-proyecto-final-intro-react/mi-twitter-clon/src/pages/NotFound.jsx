@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import React from 'react'
 
 const containerStyle =
@@ -11,7 +12,7 @@ export const NotFound = () => {
     <div className={containerStyle}>
       <div className={container}>
         <p>Hmm... esta pagina no existe. Intenta buscar otra cosa. (ᵕ—ᴗ—)</p>
-        <button className={buttonStyle}>Buscar</button>
+        <Link className={buttonStyle} to='/'>Buscar</Link>
       </div>
     </div>
   )
