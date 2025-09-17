@@ -85,9 +85,7 @@ export const HomePage = () => {
         <TweetForm onAddTweet={addTweet} />
         <TweetList tweet={allTweets} onStar={onStar} />
       </section>
-      <aside className={asideContainerStyle}>
-        <p className=''>Lado publicidad</p>
-      </aside>
+      <aside className={asideContainerStyle} />
     </main>
   )
 }
