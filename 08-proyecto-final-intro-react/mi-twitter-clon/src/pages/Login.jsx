@@ -1,3 +1,4 @@
+import { User } from 'lucide-react'
 import React from 'react'
 
 const loginContainerStyle = 'bg-black h-dvh w-dvw text-white flex'
@@ -12,7 +13,10 @@ const buttonInvertedStyle =
 export const Login = ({ onLogin }) => {
   const handleForm = (e) => {
     e.preventDefault()
-    onLogin('paprica')
+    const formData = new FormData(e.target)
+    const userCredentials = formData.get('email')
+    onLogin(userCredentials)
+    console.log(userCredentials)
   }
   return (
     <main className={loginContainerStyle}>
@@ -28,6 +32,7 @@ export const Login = ({ onLogin }) => {
           <form onSubmit={handleForm}>
             <div className='flex flex-col gap-5 pt-5'>
               <input
+                name='email'
                 className={inputStyle}
                 placeholder='Email'
                 type='email'
